@@ -1,0 +1,59 @@
+.labels {
+  display: flex;
+  flex-direction: column;
+  .heading {
+    color: rgb(107, 114, 128);
+    font-weight: 700;
+    margin-top: 2.5rem;
+  }
+  .labelContainer {
+    margin-top: 0.75rem;
+    .labelText {
+      color: rgb(55, 65, 81);
+      text-transform: capitalize;
+      margin-left: 0.5rem;
+    }
+    .checkbox-indigo {
+      color: rgb(129, 140, 248);
+      border-radius: 0.25rem;
+      cursor: pointer;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    .checkbox-gray {
+      background-color: rgb(156, 163, 175);
+      border-radius: 0.25rem;
+      cursor: pointer;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    .checkbox-green {
+      color: rgb(52, 211, 153);
+      border-radius: 0.25rem;
+      cursor: pointer;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    .checkbox-blue {
+      color: rgb(96, 165, 250);
+      border-radius: 0.25rem;
+      cursor: pointer;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    .checkbox-red {
+      color: rgb(248, 113, 113);
+      border-radius: 0.25rem;
+      cursor: pointer;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    .checkbox-purple {
+      color: rgb(167, 139, 250);
+      border-radius: 0.25rem;
+      cursor: pointer;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+}
