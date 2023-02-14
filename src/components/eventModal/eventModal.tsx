@@ -54,16 +54,15 @@ export default function EventModal() {
                   });
                   setShowEventModal(false);
                 }}
-                className={styles.delIcon}
               >
-                <img src="./delete.png" />
+                <img src="./delete.png" className={styles.delIcon} />
               </span>
             )}
             <button
               className={styles.closeIcon}
               onClick={() => setShowEventModal(false)}
             >
-              <img src="./close.png" />
+              <span>x</span>
             </button>
           </div>
         </header>

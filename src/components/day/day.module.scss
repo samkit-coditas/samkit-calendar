@@ -35,6 +35,11 @@
   .eventContainer {
     cursor: pointer;
     flex: 1 1 0%;
+    max-height: 76px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     .indigo-label {
       color: rgb(75, 85, 99);
       font-size: 0.875rem;

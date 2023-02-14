@@ -32,15 +32,14 @@
         justify-content: center;
         gap: 0.5rem;
         .delIcon {
-          color: rgb(156, 163, 175);
-          font-size: 14px;
-          line-height: 1;
           cursor: pointer;
+          height: 16px;
+          position: relative;
+          bottom: -0.325rem;
         }
         .closeIcon {
           color: rgb(156, 163, 175);
-          font-size: 20px;
-          line-height: 1;
+          font-size: 22px;
           cursor: pointer;
           border: none;
         }
