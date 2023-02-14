@@ -13,15 +13,14 @@
     max-width: 100%;
     height: auto;
     display: block;
-    vertical-align: middle;
   }
   .date {
-    font-size: medium;
+    font-size: 15px;
     font-weight: 700;
     color: rgb(59, 130, 246);
     position: absolute;
-    top: 1.45rem;
-    left: 1.85rem;
+    top: 1.4rem;
+    left: 1.9rem;
   }
   .heading {
     color: rgba(107, 114, 128);
@@ -38,7 +37,7 @@
     border-radius: 0.25rem;
     margin-right: 1.25rem;
     cursor: pointer;
-    font-size: medium;
+    font-size: 14px;
     background-color: transparent;
   }
   .button {
@@ -47,11 +46,10 @@
     background-color: transparent;
     border: none;
     .icon {
-      font-size: 20px;
-      font-weight: 800;
+      font-size: 18px;
+      font-weight: 700;
       color: rgb(75, 85, 99);
       cursor: pointer;
-      margin-left: 0.25rem;
       margin-right: 0.25rem;
     }
   }
@@ -61,5 +59,23 @@
     font-size: 1.25rem;
     line-height: 1.75rem;
     margin-left: 1rem;
+  }
+  .logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    position: absolute;
+    background-color: transparent;
+    padding: 0.5rem;
+    right: 1rem;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+    .logoutIcon {
+      height: 16px;
+    }
+    &:hover {
+      background-color: #f1f3f4;
+    }
   }
 }

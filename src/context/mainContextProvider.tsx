@@ -7,6 +7,8 @@ import React, {
 } from "react";
 import MainContext from "./mainContext";
 import dayjs from "dayjs";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/firebase/firebase";
 
 function savedEventsReducer(state: any, { type, payload }: any) {
   switch (type) {
@@ -22,14 +24,7 @@ function savedEventsReducer(state: any, { type, payload }: any) {
       throw new Error();
   }
 }
-function initEvents() {
-  const storageEvents: any = localStorage.getItem("savedEvents");
-  const parsedEvents =
-    storageEvents != "undefined" && storageEvents != "null"
-      ? JSON.parse(storageEvents)
-      : [];
-  return parsedEvents;
-}
+
 interface IMainContextProviderProps extends PropsWithChildren {}
 const MainContextProvider = ({ children }: IMainContextProviderProps) => {
   const [monthIndex, setMonthIndex] = useState<any>(dayjs().month());
@@ -38,12 +33,25 @@ const MainContextProvider = ({ children }: IMainContextProviderProps) => {
   const [showEventModal, setShowEventModal] = useState<any>(false);
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
   const [labels, setLabels] = useState<any>([]);
+  const [user] = useAuthState(auth);
+  function initEvents() {
+    const storageEvents: any = localStorage.getItem(`savedEvents-${user?.uid}`);
+    console.log(`savedEvents-${user?.uid}`);
+    console.log(storageEvents);
+    const parsedEvents =
+      storageEvents != undefined && storageEvents != null
+        ? JSON.parse(storageEvents)
+        : [];
+    console.log(parsedEvents);
+    return parsedEvents;
+  }
   const [savedEvents, dispatchCalEvent] = useReducer(
     savedEventsReducer,
     [],
     initEvents
   );
 
+  console.log(user);
   const filteredEvents = useMemo(() => {
     return savedEvents.filter((event: any) =>
       labels
@@ -54,7 +62,10 @@ const MainContextProvider = ({ children }: IMainContextProviderProps) => {
   }, [savedEvents, labels]);
 
   useEffect(() => {
-    localStorage.setItem("savedEvents", JSON.stringify(savedEvents));
+    localStorage.setItem(
+      `savedEvents-${user?.uid}`,
+      JSON.stringify(savedEvents)
+    );
   }, [savedEvents]);
 
   useEffect(() => {

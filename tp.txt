@@ -1,0 +1,8 @@
+Completed:
+  1.Implemented Validations in event form.
+  2.Implemented UI and Icon changes to look like actual calendar.
+  3.Implemented Sign In with google functionality.
+Inprogress:
+  1.Implementing integration with google calendar api.
+  2.Implementing integration with firebase to store events.
+  3.UI and functional bug fixes.

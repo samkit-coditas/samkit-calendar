@@ -8,7 +8,6 @@ export default function Month() {
   const [month, setCurrentMonth] = useState(getMonth());
   const { monthIndex, showEventModal } = useContext(MainContext);
   useEffect(() => {
-    console.log(monthIndex);
     setCurrentMonth(getMonth(monthIndex));
   }, [monthIndex]);
 

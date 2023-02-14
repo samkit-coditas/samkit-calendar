@@ -3,7 +3,6 @@ import dayjs from "dayjs";
 import React, { useContext, useState, useEffect } from "react";
 import styles from "./day.module.scss";
 export default function Day({ day, rowIdx }: any) {
-  // console.log(day, rowIdx);
   const [dayEvents, setDayEvents] = useState([]);
   const {
     setDaySelected,

@@ -1,6 +1,8 @@
 import MainContext from "@/context/mainContext";
+import { auth } from "@/firebase/firebase";
 import dayjs from "dayjs";
-import React, { useContext, useEffect } from "react";
+import { signOut } from "firebase/auth";
+import React, { useContext } from "react";
 import styles from "./topBar.module.scss";
 export default function TopBar() {
   const { monthIndex, setMonthIndex } = useContext(MainContext);
@@ -17,6 +19,9 @@ export default function TopBar() {
         : dayjs().month()
     );
   }
+  const logout = async () => {
+    await signOut(auth);
+  };
 
   return (
     <header className={styles.topBar}>
@@ -39,6 +44,10 @@ export default function TopBar() {
       <h2 className={styles.month}>
         {dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}
       </h2>
+      <button className={styles.logout} onClick={logout}>
+        <img src="./logout.png" className={styles.logoutIcon} />
+        Logout
+      </button>
     </header>
   );
 }

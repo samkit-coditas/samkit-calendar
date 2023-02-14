@@ -15,11 +15,10 @@
       background-color: transparent;
       border: none;
       .icon {
-        font-size: 20px;
-        font-weight: 800;
+        font-size: 18px;
+        font-weight: 700;
         color: rgb(75, 85, 99);
         cursor: pointer;
-        margin-left: 0.25rem;
         margin-right: 0.25rem;
       }
     }
@@ -29,7 +28,7 @@
     grid-template-rows: repeat(6, minmax(0, 1fr));
     grid-template-columns: repeat(7, minmax(0, 1fr));
     .dayText {
-      font-size: 0.875rem;
+      font-size: 0.675rem;
       line-height: 1.25rem;
       text-align: center;
       padding-top: 0.25rem;

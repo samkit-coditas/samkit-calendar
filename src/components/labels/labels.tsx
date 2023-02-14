@@ -5,7 +5,7 @@ export default function Labels() {
   const { labels, updateLabel } = useContext(MainContext);
   return (
     <div className={styles.labels}>
-      <p className={styles.heading}>Label</p>
+      <p className={styles.heading}>Labels</p>
       {labels.map(({ label: lbl, checked }: any, idx: number) => (
         <label key={idx} className={styles.labelContainer}>
           <input
