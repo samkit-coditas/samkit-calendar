@@ -35,8 +35,13 @@ export default function EventModal() {
     setShowEventModal(false);
   }
   return (
-    <div className={styles.eventModal}>
-      <form className={styles.form}>
+    <div className={styles.eventModal} onClick={() => setShowEventModal(false)}>
+      <form
+        className={styles.form}
+        onClick={(event: any) => {
+          event.stopPropagation();
+        }}
+      >
         <header className={styles.header}>
           <span className={styles.dragIcon}>
             <img src="./drag.png" />
