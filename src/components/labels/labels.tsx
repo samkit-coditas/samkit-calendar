@@ -12,10 +12,12 @@ export default function Labels() {
             type="checkbox"
             checked={checked}
             onChange={() => updateLabel({ label: lbl, checked: !checked })}
-            className={styles[`checkbox-${lbl}`]}
+            className={styles.checkbox}
           />
           <span className={styles.labelText}>
-            {lbl} <span className={styles[`${lbl}-color`]}></span>
+            {lbl}{" "}
+            {/* <span className={checked ? styles[`${lbl}-color`] : styles.colors}> */}
+            <span className={styles[`${lbl}-color`]}>{checked ? "✔" : ""}</span>
           </span>
         </label>
       ))}
