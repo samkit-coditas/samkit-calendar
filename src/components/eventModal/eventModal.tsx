@@ -43,9 +43,7 @@ export default function EventModal() {
         }}
       >
         <header className={styles.header}>
-          <span className={styles.dragIcon}>
-            <img src="./drag.png" />
-          </span>
+          <div></div>
           <div className={styles.iconContainer}>
             {selectedEvent && (
               <span
