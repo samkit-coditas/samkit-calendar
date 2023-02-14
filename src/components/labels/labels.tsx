@@ -14,7 +14,9 @@ export default function Labels() {
             onChange={() => updateLabel({ label: lbl, checked: !checked })}
             className={styles[`checkbox-${lbl}`]}
           />
-          <span className={styles.labelText}>{lbl}</span>
+          <span className={styles.labelText}>
+            {lbl} <span className={styles[`${lbl}-color`]}></span>
+          </span>
         </label>
       ))}
     </div>

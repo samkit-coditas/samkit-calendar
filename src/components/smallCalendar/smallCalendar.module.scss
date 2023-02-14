@@ -1,5 +1,5 @@
 .smallCalendar {
-  margin-top: 2.25rem;
+  margin-top: 1.5rem;
   .header {
     display: flex;
     justify-content: space-between;
@@ -16,6 +16,7 @@
       border: none;
       .icon {
         font-size: 20px;
+        font-weight: 800;
         color: rgb(75, 85, 99);
         cursor: pointer;
         margin-left: 0.5rem;

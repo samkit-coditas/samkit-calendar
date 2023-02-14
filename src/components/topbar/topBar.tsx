@@ -8,7 +8,6 @@ export default function TopBar() {
     setMonthIndex(monthIndex - 1);
   }
   function handleNextMonth() {
-    console.log("next moth");
     setMonthIndex(monthIndex + 1);
   }
   function handleReset() {
@@ -21,7 +20,12 @@ export default function TopBar() {
 
   return (
     <header className={styles.topBar}>
-      <img src={"./logo.png"} alt="calendar" className={styles.logo} />
+      <div>
+        <img src={"./logo.png"} alt="calendar" className={styles.logo} />
+        <span className={styles.date}>
+          {new Date().toLocaleDateString().split("/")[1]}
+        </span>
+      </div>
       <h1 className={styles.heading}>Calendar</h1>
       <button onClick={handleReset} className={styles.resetButton}>
         Today

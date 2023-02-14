@@ -1,6 +1,7 @@
 .labels {
   display: flex;
   flex-direction: column;
+  margin-top: -1rem;
   .heading {
     color: rgb(107, 114, 128);
     font-weight: 700;
@@ -8,10 +9,75 @@
   }
   .labelContainer {
     margin-top: 0.75rem;
+    display: flex;
+    align-items: center;
     .labelText {
       color: rgb(55, 65, 81);
       text-transform: capitalize;
       margin-left: 0.5rem;
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 0.5rem;
+      .indigo-color {
+        background-color: rgb(99, 102, 241);
+        border-radius: 9999px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+      .gray-color {
+        background-color: rgb(107, 114, 128);
+        border-radius: 9999px;
+        cursor: pointer;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .green-color {
+        background-color: rgb(16, 185, 129);
+        border-radius: 9999px;
+        cursor: pointer;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .blue-color {
+        background-color: rgb(59, 130, 246);
+        border-radius: 9999px;
+        cursor: pointer;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .red-color {
+        background-color: rgb(239, 68, 68);
+        border-radius: 9999px;
+        cursor: pointer;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .purple-color {
+        background-color: rgb(139, 92, 246);
+        border-radius: 9999px;
+        cursor: pointer;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
     .checkbox-indigo {
       color: rgb(129, 140, 248);
@@ -21,7 +87,7 @@
       height: 1.25rem;
     }
     .checkbox-gray {
-      background-color: rgb(156, 163, 175);
+      color: rgb(156, 163, 175);
       border-radius: 0.25rem;
       cursor: pointer;
       width: 1.25rem;

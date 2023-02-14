@@ -76,13 +76,9 @@ export default function EventModal() {
               className={styles.titleInput}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <span>
-              <img src="./schedule.png" />
-            </span>
+            <img src="./schedule.png" className={styles.scheduleIcon} />
             <p>{daySelected.format("dddd, MMMM DD")}</p>
-            <span>
-              <img src="./segment.png" />
-            </span>
+            <img src="./segment.png" className={styles.segmentIcon} />
             <input
               type="text"
               name="description"
@@ -92,9 +88,7 @@ export default function EventModal() {
               className={styles.descriptionInput}
               onChange={(e) => setDescription(e.target.value)}
             />
-            <span>
-              <img src="./bookmark.png" />
-            </span>
+            <img src="./bookmark.png" className={styles.bookmarkIcon} />
             <div className={styles.bookmarkColors}>
               {labelsClasses.map((lblClass, i) => (
                 <span
@@ -115,6 +109,7 @@ export default function EventModal() {
             type="submit"
             onClick={handleSubmit}
             className={styles.saveButton}
+            disabled={!title}
           >
             Save
           </button>
