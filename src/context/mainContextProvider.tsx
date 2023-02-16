@@ -14,6 +14,15 @@ function savedEventsReducer(state: any, { type, payload }: any) {
   switch (type) {
     case "push":
       return [...state, payload];
+    case "pushArray":
+      const temp = state.map((item: any) => item.id);
+      const temp2 = payload.filter(
+        (item: any) => item.title && item.day && item.id
+      );
+      return [
+        ...state,
+        ...temp2.filter((item: any) => !temp.includes(item.id)),
+      ];
     case "update":
       return state.map((event: any) =>
         event.id === payload.id ? payload : event
@@ -36,13 +45,10 @@ const MainContextProvider = ({ children }: IMainContextProviderProps) => {
   const [user] = useAuthState(auth);
   function initEvents() {
     const storageEvents: any = localStorage.getItem(`savedEvents-${user?.uid}`);
-    console.log(`savedEvents-${user?.uid}`);
-    console.log(storageEvents);
     const parsedEvents =
       storageEvents != undefined && storageEvents != null
         ? JSON.parse(storageEvents)
         : [];
-    console.log(parsedEvents);
     return parsedEvents;
   }
   const [savedEvents, dispatchCalEvent] = useReducer(
@@ -51,7 +57,6 @@ const MainContextProvider = ({ children }: IMainContextProviderProps) => {
     initEvents
   );
 
-  console.log(user);
   const filteredEvents = useMemo(() => {
     return savedEvents.filter((event: any) =>
       labels

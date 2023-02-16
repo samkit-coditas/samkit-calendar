@@ -4,13 +4,16 @@ import React, { useContext, useEffect, useState } from "react";
 import Day from "../day/day";
 import EventModal from "../eventModal/eventModal";
 import styles from "./month.module.scss";
-export default function Month() {
+export default function Month({ data }: any) {
   const [month, setCurrentMonth] = useState(getMonth());
-  const { monthIndex, showEventModal } = useContext(MainContext);
+  const { monthIndex, showEventModal, dispatchCalEvent } =
+    useContext(MainContext);
   useEffect(() => {
     setCurrentMonth(getMonth(monthIndex));
   }, [monthIndex]);
-
+  useEffect(() => {
+    data.length && dispatchCalEvent({ type: "pushArray", payload: data });
+  }, []);
   return (
     <div className={styles.month}>
       {showEventModal && <EventModal />}

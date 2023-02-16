@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { auth } from "@/firebase/firebase";
 import styles from "./login.module.scss";
-const Login = () => {
-  const [signInWithGoogle, userCred, loading, userError] =
-    useSignInWithGoogle(auth);
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+const Login = ({ setAccessToken }: any) => {
+  // const [signInWithGoogle, userCred, loading, userError] =
+  //   useSignInWithGoogle(auth);
+  const [error, setError] = useState("");
+  const provider = new GoogleAuthProvider();
+  provider.addScope("https://www.googleapis.com/auth/calendar");
+  provider.addScope("https://www.googleapis.com/auth/calendar.events");
+
+  const signIn = async () => {
+    await signInWithPopup(auth, provider)
+      .then((result) => {
+        setError("");
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential?.accessToken;
+        setAccessToken(token);
+        const user = result.user;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(errorMessage);
+        const email = error.customData.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      });
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.mainContainer}>
@@ -17,13 +41,13 @@ const Login = () => {
           <button
             className={styles.loginButton}
             onClick={() => {
-              signInWithGoogle();
+              signIn();
             }}
           >
             <img src={"./googlelogo.png"} className={styles.googleLogo} />
             SignIn With Google
           </button>
-          <p className={styles.errorMessage}>{userError?.message}</p>
+          <p className={styles.errorMessage}>{error}</p>
         </div>
       </div>
     </div>

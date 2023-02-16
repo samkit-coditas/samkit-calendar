@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import "./app.css";
 
 function App({ Component, pageProps }: any) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 export default App;
