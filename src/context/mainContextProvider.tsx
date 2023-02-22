@@ -19,6 +19,12 @@ function savedEventsReducer(state: any, { type, payload }: any) {
       const temp2 = payload.filter(
         (item: any) => item.title && item.day && item.id
       );
+      temp2.forEach((itm: any) => {
+        const index = temp?.indexOf(itm.id);
+        if (index >= 0) {
+          state[index] = itm;
+        }
+      });
       return [
         ...state,
         ...temp2.filter((item: any) => !temp.includes(item.id)),

@@ -17,7 +17,7 @@ export default function EventModal() {
       : labelsClasses[0]
   );
 
-  function handleSubmit(e: any) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
     const calendarEvent = {
       title,
@@ -25,9 +25,40 @@ export default function EventModal() {
       label: selectedLabel,
       day: daySelected.valueOf(),
       id: selectedEvent ? selectedEvent.id : Date.now(),
+      meetLink: selectedEvent ? selectedEvent.meetLink : "",
+      _id: selectedEvent ? selectedEvent._id : "",
     };
     if (selectedEvent) {
       dispatchCalEvent({ type: "update", payload: calendarEvent });
+      if (selectedEvent._id) {
+        try {
+          let authHeader = "Bearer " + localStorage.getItem("accessToken");
+          let url = `https://www.googleapis.com/calendar/v3/calendars/primary/events/${selectedEvent._id}`;
+          const res = await fetch(url, {
+            method: "GET",
+            headers: {
+              "Content-type": "application/json",
+              Authorization: authHeader,
+            },
+          });
+          const data = await res.json();
+          data.summary = title;
+          data.description = description;
+          const event = await fetch(url, {
+            method: "PUT",
+            headers: {
+              "Content-type": "application/json",
+              Authorization: authHeader,
+            },
+            body: JSON.stringify(data),
+          });
+          const result = await event.json();
+          console.log(result);
+        } catch (error) {
+          console.log("error", error);
+          setShowEventModal(false);
+        }
+      }
     } else {
       dispatchCalEvent({ type: "push", payload: calendarEvent });
     }
@@ -79,7 +110,7 @@ export default function EventModal() {
               onChange={(e) => setTitle(e.target.value)}
             />
             <img src="./schedule.png" className={styles.scheduleIcon} />
-            <p>{daySelected.format("dddd, MMMM DD")}</p>
+            <p className={styles.date}>{daySelected.format("dddd, MMMM DD")}</p>
             <img src="./segment.png" className={styles.segmentIcon} />
             <input
               type="text"
@@ -107,6 +138,18 @@ export default function EventModal() {
           </div>
         </div>
         <footer className={styles.footer}>
+          {selectedEvent?.meetLink ? (
+            <div>
+              <a href={selectedEvent.meetLink} target="_blank">
+                <button className={styles.meetButton} type="button">
+                  Join with Google Meet
+                </button>
+              </a>
+              <span className={styles.link}>{selectedEvent.meetLink}</span>
+            </div>
+          ) : (
+            <div></div>
+          )}
           <button
             type="submit"
             onClick={handleSubmit}
