@@ -5,9 +5,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "./smallCalendar.module.scss";
 export default function SmallCalendar() {
   const [currentMonthIdx, setCurrentMonthIdx] = useState(dayjs().month());
-  const [currentMonth, setCurrentMonth] = useState(
-    getMonth(currentMonthIdx, "from small Calendar")
-  );
+  const [currentMonth, setCurrentMonth] = useState(getMonth(currentMonthIdx));
   useEffect(() => {
     setCurrentMonth(getMonth(currentMonthIdx));
   }, [currentMonthIdx]);
@@ -38,18 +36,19 @@ export default function SmallCalendar() {
       return styles.normalDay;
     }
   }
+
   return (
     <div className={styles.smallCalendar}>
       <header className={styles.header}>
         <p className={styles.monthHeading}>
           {dayjs(new Date(dayjs().year(), currentMonthIdx)).format("MMMM YYYY")}
         </p>
-        <div>
+        <div className={styles.buttonContainer}>
           <button onClick={handlePrevMonth} className={styles.button}>
-            <span className={styles.icon}>{"<"}</span>
+            <img className={styles.icon} src="./leftIcon.png" />
           </button>
           <button onClick={handleNextMonth} className={styles.button}>
-            <span className={styles.icon}>{">"}</span>
+            <img className={styles.icon} src="./rightIcon.png" />
           </button>
         </div>
       </header>
@@ -70,7 +69,15 @@ export default function SmallCalendar() {
                 }}
                 className={getDayClass(day)}
               >
-                <span className={styles.text}>{day.format("D")}</span>
+                <span
+                  className={
+                    currentMonth[1][0].format("MM") == day.format("MM")
+                      ? styles.text
+                      : styles.noText
+                  }
+                >
+                  {day.format("D")}
+                </span>
               </button>
             ))}
           </React.Fragment>

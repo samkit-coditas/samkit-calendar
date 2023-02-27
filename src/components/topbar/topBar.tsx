@@ -37,10 +37,10 @@ export default function TopBar() {
         Today
       </button>
       <button onClick={handlePrevMonth} className={styles.button}>
-        <span className={styles.icon}>{"<"}</span>
+        <img className={styles.icon} src="./leftIcon.png" />
       </button>
       <button onClick={handleNextMonth} className={styles.button}>
-        <span className={styles.icon}>{">"}</span>
+        <img className={styles.icon} src="./rightIcon.png" />
       </button>
       <h2 className={styles.month}>
         {dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}

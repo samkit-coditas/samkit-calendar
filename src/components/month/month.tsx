@@ -66,7 +66,7 @@ export default function Month({ acccessToken }: any) {
           {month.map((row: any, i: number) => (
             <React.Fragment key={i}>
               {row.map((day: any, idx: number) => (
-                <Day day={day} key={idx} rowIdx={i} />
+                <Day day={day} key={idx} rowIdx={i} month={month} />
               ))}
             </React.Fragment>
           ))}

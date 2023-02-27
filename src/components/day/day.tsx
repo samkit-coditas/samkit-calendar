@@ -2,7 +2,7 @@ import MainContext from "@/context/mainContext";
 import dayjs from "dayjs";
 import React, { useContext, useState, useEffect } from "react";
 import styles from "./day.module.scss";
-export default function Day({ day, rowIdx }: any) {
+export default function Day({ day, rowIdx, month }: any) {
   const [dayEvents, setDayEvents] = useState([]);
   const {
     setDaySelected,
@@ -29,7 +29,15 @@ export default function Day({ day, rowIdx }: any) {
         {rowIdx === 0 && (
           <p className={styles.dayText}>{day.format("ddd").toUpperCase()}</p>
         )}
-        <p className={getCurrentDayClass()}>{day.format("DD")}</p>
+        <p className={getCurrentDayClass()}>
+          <span
+            className={
+              month[1][0].format("MM") == day.format("MM") ? "" : styles.light
+            }
+          >
+            {day.format("DD")}
+          </span>
+        </p>
       </header>
       <div
         className={styles.eventContainer}
