@@ -45,8 +45,9 @@ const MainContextProvider = ({ children }: IMainContextProviderProps) => {
   const [monthIndex, setMonthIndex] = useState<any>(dayjs().month());
   const [smallCalendarMonth, setSmallCalendarMonth] = useState<any>(null);
   const [daySelected, setDaySelected] = useState<any>(dayjs());
-  const [showEventModal, setShowEventModal] = useState<any>(false);
+  const [showEventModal, setShowEventModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
+  const [calendarView, setCalendarView] = useState<string>("month");
   const [labels, setLabels] = useState<any>([]);
   const [user] = useAuthState(auth);
   function initEvents() {
@@ -132,6 +133,8 @@ const MainContextProvider = ({ children }: IMainContextProviderProps) => {
         labels,
         updateLabel,
         filteredEvents,
+        calendarView,
+        setCalendarView,
       }}
     >
       {children}

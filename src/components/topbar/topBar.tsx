@@ -6,7 +6,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import styles from "./topBar.module.scss";
 export default function TopBar() {
-  const { monthIndex, setMonthIndex } = useContext(MainContext);
+  const { monthIndex, setMonthIndex, calendarView, setCalendarView } =
+    useContext(MainContext);
 
   const [user] = useAuthState(auth);
 

@@ -46,6 +46,7 @@ export default function Day({ day, rowIdx, month }: any) {
       </header>
       <div
         className={styles.eventContainer}
+        style={rowIdx === 0 ? { maxHeight: "60px" } : undefined}
         onClick={() => {
           setDaySelected(day);
           setShowEventModal(true);
