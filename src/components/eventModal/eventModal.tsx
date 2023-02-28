@@ -53,7 +53,6 @@ export default function EventModal() {
             body: JSON.stringify(data),
           });
           const result = await event.json();
-          console.log(result);
         } catch (error) {
           console.log("error", error);
           setShowEventModal(false);

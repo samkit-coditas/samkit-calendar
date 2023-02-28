@@ -23,6 +23,11 @@ export default function Day({ day, rowIdx, month }: any) {
       ? styles.currentDate
       : styles.date;
   }
+  const onWheelHandler = (event: any) => {
+    if (dayEvents.length > 2) {
+      event.stopPropagation();
+    }
+  };
   return (
     <div className={styles.day}>
       <header className={styles.heading}>
@@ -45,12 +50,14 @@ export default function Day({ day, rowIdx, month }: any) {
           setDaySelected(day);
           setShowEventModal(true);
         }}
+        onWheel={onWheelHandler}
       >
         {dayEvents.map((evt: any, idx: number) => (
           <div
             key={idx}
             onClick={() => setSelectedEvent(evt)}
             className={styles[`${evt.label}-label`]}
+            onWheel={onWheelHandler}
           >
             {evt.title}
           </div>

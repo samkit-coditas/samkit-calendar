@@ -2,16 +2,37 @@ import MainContext from "@/context/mainContext";
 import { auth } from "@/firebase/firebase";
 import dayjs from "dayjs";
 import { signOut } from "firebase/auth";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import styles from "./topBar.module.scss";
 export default function TopBar() {
   const { monthIndex, setMonthIndex } = useContext(MainContext);
+
+  const [user] = useAuthState(auth);
+
   function handlePrevMonth() {
     setMonthIndex(monthIndex - 1);
   }
   function handleNextMonth() {
     setMonthIndex(monthIndex + 1);
   }
+
+  const handleScroll = (event: any) => {
+    if (event.deltaY < 0) {
+      console.log("scrollUp");
+      setMonthIndex(monthIndex + 1);
+    } else if (event.deltaY > 0) {
+      console.log("scrollDown");
+      setMonthIndex(monthIndex - 1);
+    }
+  };
+  useEffect(() => {
+    if (user) {
+      document.addEventListener("wheel", handleScroll);
+    }
+    return () => document.removeEventListener("wheel", handleScroll);
+  }, [user, monthIndex]);
+
   function handleReset() {
     setMonthIndex(
       monthIndex === dayjs().month()

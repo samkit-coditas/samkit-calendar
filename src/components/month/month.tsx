@@ -29,7 +29,6 @@ export default function Month({ acccessToken }: any) {
         },
       });
       const data = await res.json();
-      console.log(data);
       const events = data.items.map((item: any) => ({
         title: item.summary || "",
         description: item.description || "",
