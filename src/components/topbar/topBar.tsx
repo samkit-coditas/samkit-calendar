@@ -20,10 +20,10 @@ export default function TopBar() {
   const handleScroll = (event: any) => {
     if (event.deltaY < 0) {
       console.log("scrollUp");
-      setMonthIndex(monthIndex + 1);
+      setMonthIndex(monthIndex - 1);
     } else if (event.deltaY > 0) {
       console.log("scrollDown");
-      setMonthIndex(monthIndex - 1);
+      setMonthIndex(monthIndex + 1);
     }
   };
   useEffect(() => {
