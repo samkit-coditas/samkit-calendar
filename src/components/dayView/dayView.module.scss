@@ -3,6 +3,7 @@
   border: 1px solid #ccc;
   display: flex;
   flex-direction: column;
+  padding: 0 4px;
   .headerContainer {
     max-height: 18vh;
     display: flex;
@@ -216,7 +217,7 @@
         align-items: flex-end;
         border-right: 1px solid #ccc;
         font-size: 11px;
-        padding-right: 1px;
+        padding-right: 2px;
         color: #757575;
         height: 60px;
         .time {

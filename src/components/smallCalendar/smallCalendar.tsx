@@ -17,10 +17,10 @@ export default function SmallCalendar() {
     setCurrentMonthIdx(monthIndex);
   }, [monthIndex]);
 
-  function handlePrevMonth() {
+  function handlePrev() {
     setCurrentMonthIdx(currentMonthIdx - 1);
   }
-  function handleNextMonth() {
+  function handleNext() {
     setCurrentMonthIdx(currentMonthIdx + 1);
   }
   function getDayClass(day: any) {
@@ -44,10 +44,10 @@ export default function SmallCalendar() {
           {dayjs(new Date(dayjs().year(), currentMonthIdx)).format("MMMM YYYY")}
         </p>
         <div className={styles.buttonContainer}>
-          <button onClick={handlePrevMonth} className={styles.button}>
+          <button onClick={handlePrev} className={styles.button}>
             <img className={styles.icon} src="./leftIcon.png" />
           </button>
-          <button onClick={handleNextMonth} className={styles.button}>
+          <button onClick={handleNext} className={styles.button}>
             <img className={styles.icon} src="./rightIcon.png" />
           </button>
         </div>

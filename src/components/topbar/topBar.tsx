@@ -6,14 +6,23 @@ import React, { useContext } from "react";
 import CustomSelect from "../customSelect/customSelect";
 import styles from "./topBar.module.scss";
 export default function TopBar() {
-  const { monthIndex, setMonthIndex, calendarView, setCalendarView } =
-    useContext(MainContext);
+  const {
+    monthIndex,
+    setMonthIndex,
+    calendarView,
+    setCalendarView,
+    daySelected,
+    setDaySelected,
+  } = useContext(MainContext);
 
   function handlePrevMonth() {
-    setMonthIndex(monthIndex - 1);
+    calendarView === "month" && setMonthIndex(monthIndex - 1);
+    calendarView === "day" &&
+      setDaySelected(dayjs(daySelected).subtract(1, "day"));
   }
   function handleNextMonth() {
-    setMonthIndex(monthIndex + 1);
+    calendarView === "month" && setMonthIndex(monthIndex + 1);
+    calendarView === "day" && setDaySelected(dayjs(daySelected).add(1, "day"));
   }
 
   function handleReset() {
@@ -22,6 +31,7 @@ export default function TopBar() {
         ? monthIndex + Math.random()
         : dayjs().month()
     );
+    calendarView === "day" && setDaySelected(dayjs(Date.now()));
   }
   const logout = async () => {
     await signOut(auth);
@@ -53,7 +63,9 @@ export default function TopBar() {
         <img className={styles.icon} src="./rightIcon.png" />
       </button>
       <h2 className={styles.month}>
-        {dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}
+        {calendarView === "month" &&
+          dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}
+        {calendarView === "day" && dayjs(daySelected).format("MMMM DD YYYY")}
       </h2>
       <div className={styles.select}>
         <CustomSelect
