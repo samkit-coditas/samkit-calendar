@@ -69,16 +69,13 @@ const DayView = ({ day }: any) => {
     <div className={styles.container}>
       <div className={styles.headerContainer}>
         <div className={styles.bottomTextContainer}>
+          {!!dayEvents.length && (
+            <span className={styles.bottomTextFiller}></span>
+          )}
           <span className={styles.bottomText}>GMT+5:30</span>
         </div>
 
-        <div
-          className={styles.header}
-          onClick={() => {
-            setDaySelected(day);
-            setShowEventModal(true);
-          }}
-        >
+        <div className={styles.header}>
           <div className={styles.dayDateContainer}>
             <span className={isToday ? styles.day : styles.normalDay}>
               {day.format("ddd").toUpperCase()}
@@ -106,7 +103,12 @@ const DayView = ({ day }: any) => {
           </div>
         </div>
       </div>
-      <div className={styles["day-view"]}>
+      <div
+        className={[
+          styles["day-view"],
+          !dayEvents.length ? styles.largeWindow : "",
+        ].join(" ")}
+      >
         {!!topPosition && (
           <div
             className={styles["time-indicator-line"]}

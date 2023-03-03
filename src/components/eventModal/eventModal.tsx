@@ -16,7 +16,9 @@ export default function EventModal() {
       ? labelsClasses.find((lbl) => lbl === selectedEvent.label)
       : labelsClasses[0]
   );
-
+  const [eventTime, setEventTime] = useState(
+    selectedEvent ? selectedEvent.eventTime : ""
+  );
   async function handleSubmit(e: any) {
     e.preventDefault();
     const calendarEvent = {
