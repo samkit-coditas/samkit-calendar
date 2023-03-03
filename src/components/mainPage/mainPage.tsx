@@ -3,9 +3,9 @@ import { auth } from "@/firebase/firebase";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Login from "../login/login";
-import Month from "../month/month";
 import Sidebar from "../sideBar/sideBar";
 import TopBar from "../topbar/topBar";
+import ViewManager from "../viewManager/viewManager";
 import styles from "./mainPage.module.scss";
 const MainPage = () => {
   const [user] = useAuthState(auth);
@@ -21,7 +21,7 @@ const MainPage = () => {
             <TopBar />
             <div className={styles.container}>
               <Sidebar />
-              {acccessToken && <Month acccessToken={acccessToken} />}
+              {acccessToken && <ViewManager acccessToken={acccessToken} />}
             </div>
           </div>
         </MainContextProvider>

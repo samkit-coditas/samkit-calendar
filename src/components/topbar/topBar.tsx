@@ -2,14 +2,12 @@ import MainContext from "@/context/mainContext";
 import { auth } from "@/firebase/firebase";
 import dayjs from "dayjs";
 import { signOut } from "firebase/auth";
-import React, { useContext, useEffect, useState } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import React, { useContext } from "react";
+import CustomSelect from "../customSelect/customSelect";
 import styles from "./topBar.module.scss";
 export default function TopBar() {
   const { monthIndex, setMonthIndex, calendarView, setCalendarView } =
     useContext(MainContext);
-
-  const [user] = useAuthState(auth);
 
   function handlePrevMonth() {
     setMonthIndex(monthIndex - 1);
@@ -17,22 +15,6 @@ export default function TopBar() {
   function handleNextMonth() {
     setMonthIndex(monthIndex + 1);
   }
-
-  const handleScroll = (event: any) => {
-    if (event.deltaY < 0) {
-      console.log("scrollUp");
-      setMonthIndex(monthIndex - 1);
-    } else if (event.deltaY > 0) {
-      console.log("scrollDown");
-      setMonthIndex(monthIndex + 1);
-    }
-  };
-  useEffect(() => {
-    if (user) {
-      document.addEventListener("wheel", handleScroll);
-    }
-    return () => document.removeEventListener("wheel", handleScroll);
-  }, [user, monthIndex]);
 
   function handleReset() {
     setMonthIndex(
@@ -50,7 +32,13 @@ export default function TopBar() {
     <header className={styles.topBar}>
       <div>
         <img src={"./logo.png"} alt="calendar" className={styles.logo} />
-        <span className={styles.date}>
+        <span
+          className={
+            new Date().toLocaleDateString().split("/")[1].length == 2
+              ? styles.date
+              : styles.singleDate
+          }
+        >
           {new Date().toLocaleDateString().split("/")[1]}
         </span>
       </div>
@@ -67,6 +55,20 @@ export default function TopBar() {
       <h2 className={styles.month}>
         {dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}
       </h2>
+      <div className={styles.select}>
+        <CustomSelect
+          options={[
+            { label: "Day", value: "day" },
+            { label: "Week", value: "week" },
+            { label: "Month", value: "month" },
+            { label: "Year", value: "year" },
+          ]}
+          value={calendarView}
+          onChange={(value: string) => {
+            setCalendarView(value);
+          }}
+        />
+      </div>
       <button className={styles.logout} onClick={logout}>
         <img src="./logout.png" className={styles.logoutIcon} />
         Logout

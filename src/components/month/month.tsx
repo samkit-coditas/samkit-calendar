@@ -3,15 +3,31 @@ import { getMonth } from "@/utility/helper";
 import React, { useContext, useEffect, useState } from "react";
 import Day from "../day/day";
 import dayjs from "dayjs";
-import EventModal from "../eventModal/eventModal";
+import { auth } from "@/firebase/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 import styles from "./month.module.scss";
 export default function Month({ acccessToken }: any) {
   const [month, setCurrentMonth] = useState(getMonth());
 
   const [data, setData] = useState([]);
-
-  const { monthIndex, showEventModal, dispatchCalEvent } =
+  const [user] = useAuthState(auth);
+  const { monthIndex, dispatchCalEvent, setMonthIndex } =
     useContext(MainContext);
+  const handleScroll = (event: any) => {
+    if (event.deltaY < 0) {
+      console.log("scrollUp");
+      setMonthIndex(monthIndex - 1);
+    } else if (event.deltaY > 0) {
+      console.log("scrollDown");
+      setMonthIndex(monthIndex + 1);
+    }
+  };
+  useEffect(() => {
+    if (user) {
+      document.addEventListener("wheel", handleScroll);
+    }
+    return () => document.removeEventListener("wheel", handleScroll);
+  }, [user, monthIndex]);
   useEffect(() => {
     setCurrentMonth(getMonth(monthIndex));
   }, [monthIndex]);
@@ -61,7 +77,6 @@ export default function Month({ acccessToken }: any) {
     <>
       {!!data.length && (
         <div className={styles.month}>
-          {showEventModal && <EventModal />}
           {month.map((row: any, i: number) => (
             <React.Fragment key={i}>
               {row.map((day: any, idx: number) => (

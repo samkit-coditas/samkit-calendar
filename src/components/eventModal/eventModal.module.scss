@@ -8,6 +8,7 @@
   top: 0px;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.2);
+  z-index: 100;
   .form {
     --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
