@@ -33,7 +33,6 @@ const DayView = ({ day }: any) => {
       }, 60000);
     }
   }, [day]);
-  console.log(topPosition);
   const fetchTopPosition = () => {
     setTopPosition(calculateTopPosition(new Date()));
   };
@@ -53,7 +52,7 @@ const DayView = ({ day }: any) => {
           }}
           className={styles["hourlyEvents"]}
         >
-          {dayEvents.map((evt: any, idx: number) => (
+          {/* {dayEvents.map((evt: any, idx: number) => (
             <div
               key={idx}
               onClick={() => setSelectedEvent(evt)}
@@ -61,7 +60,7 @@ const DayView = ({ day }: any) => {
             >
               {evt.title}
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     );
@@ -80,12 +79,31 @@ const DayView = ({ day }: any) => {
             setShowEventModal(true);
           }}
         >
-          <span className={isToday ? styles.day : styles.normalDay}>
-            {day.format("ddd").toUpperCase()}
-          </span>
-          <p className={isToday ? styles.date : styles.normalDate}>
-            {day.date()}
-          </p>
+          <div className={styles.dayDateContainer}>
+            <span className={isToday ? styles.day : styles.normalDay}>
+              {day.format("ddd").toUpperCase()}
+            </span>
+            <p className={isToday ? styles.date : styles.normalDate}>
+              {day.date()}
+            </p>
+          </div>
+          <div
+            onClick={() => {
+              setDaySelected(day);
+              setShowEventModal(true);
+            }}
+            className={styles["events"]}
+          >
+            {dayEvents.map((evt: any, idx: number) => (
+              <div
+                key={idx}
+                onClick={() => setSelectedEvent(evt)}
+                className={styles[`${evt.label}-label`]}
+              >
+                {evt.title}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <div className={styles["day-view"]}>

@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   .headerContainer {
-    max-height: 10vh;
+    max-height: 18vh;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -12,6 +12,7 @@
     padding-bottom: 0;
     border-bottom: 1px solid #ccc;
     .bottomTextContainer {
+      flex: 1;
       display: flex;
       flex-direction: column-reverse;
       margin-left: 20px;
@@ -23,42 +24,143 @@
     }
 
     .header {
+      flex: 19;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
       padding-bottom: 0.5rem;
-      padding-left: 1rem;
+      padding-left: 0.8rem;
       border-left: 1px solid #ccc;
-      .normalDay {
-        font-size: 11px;
-        color: #757575;
-      }
-      .normalDate {
-        font-size: 25px;
-        border-radius: 50%;
+      padding-bottom: 0;
+      .dayDateContainer {
         display: flex;
         justify-content: center;
+        flex-direction: column;
         align-items: center;
-        width: 46px;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        width: fit-content;
+        padding: 0.3rem;
+        padding-bottom: 0;
+        .normalDay {
+          font-size: 11px;
+          color: #757575;
+        }
+        .normalDate {
+          font-size: 24px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 45px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+        }
+        .day {
+          font-size: 11px;
+          color: #1a73e8;
+        }
+        .date {
+          font-size: 24px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 45px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          margin-bottom: 1px;
+          background-color: #1a73e8;
+          color: white;
+        }
       }
-      .day {
-        font-size: 11px;
-        color: #1a73e8;
-      }
-      .date {
-        font-size: 25px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 46px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        background-color: #1a73e8;
-        color: white;
+
+      .events {
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        .indigo-label {
+          color: rgb(75, 85, 99);
+          font-size: 0.675rem;
+          line-height: 0.8rem;
+          margin-bottom: 0.15rem;
+          padding: 0.15rem;
+          border: 2px solid;
+          border-color: rgba(199, 210, 254);
+          border-radius: 0.25rem;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin-right: 0.25rem;
+          margin-left: 0.25rem;
+        }
+        .gray-label {
+          color: rgb(75, 85, 99);
+          font-size: 0.675rem;
+          line-height: 0.8rem;
+          margin-bottom: 0.15rem;
+          padding: 0.15rem;
+          border: 2px solid;
+          border-color: rgba(229, 231, 235);
+          border-radius: 0.25rem;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin-right: 0.25rem;
+          margin-left: 0.25rem;
+        }
+        .green-label {
+          color: rgb(75, 85, 99);
+          font-size: 0.675rem;
+          line-height: 0.8rem;
+          margin-bottom: 0.15rem;
+          padding: 0.15rem;
+          border: 2px solid;
+          border-color: rgba(167, 243, 208);
+          border-radius: 0.25rem;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin-right: 0.25rem;
+          margin-left: 0.25rem;
+        }
+        .blue-label {
+          color: rgb(75, 85, 99);
+          font-size: 0.675rem;
+          line-height: 0.8rem;
+          margin-bottom: 0.15rem;
+          padding: 0.15rem;
+          border: 2px solid;
+          border-color: rgba(191, 219, 254);
+          border-radius: 0.25rem;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin-right: 0.25rem;
+          margin-left: 0.25rem;
+        }
+        .red-label {
+          color: rgb(75, 85, 99);
+          font-size: 0.675rem;
+          line-height: 0.8rem;
+          margin-bottom: 0.15rem;
+          padding: 0.15rem;
+          border: 2px solid;
+          border-color: rgba(254, 202, 202);
+          border-radius: 0.25rem;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin-right: 0.25rem;
+          margin-left: 0.25rem;
+        }
+        .purple-label {
+          color: rgb(75, 85, 99);
+          font-size: 0.675rem;
+          line-height: 0.8rem;
+          margin-bottom: 0.15rem;
+          padding: 0.15rem;
+          border: 2px solid;
+          border-color: rgba(221, 214, 254);
+          border-radius: 0.25rem;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin-right: 0.25rem;
+          margin-left: 0.25rem;
+        }
       }
     }
   }
@@ -81,7 +183,7 @@
   .day-view {
     display: flex;
     flex-direction: column;
-    max-height: 80vh;
+    max-height: 72vh;
     overflow-y: scroll;
     position: relative;
     .time-indicator-line {
@@ -218,12 +320,6 @@
           margin-left: 0.25rem;
         }
       }
-    }
-
-    .events {
-      position: relative;
-      overflow-y: scroll;
-      border-bottom: 1px solid #ccc;
     }
   }
 }
